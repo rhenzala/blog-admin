@@ -5,7 +5,7 @@ import EditCommentForm from "./EditCommentForm";
 import CommentForm from "./CommentForm";
 
 
-const Comment = ({ post, admin }) => {
+const Comment = ({ post, user }) => {
     const [comments, setComments] = useState([]);
     const [activeCommentId, setActiveCommentId] = useState(null); 
     const [error, setError] = useState(null);
@@ -53,7 +53,7 @@ const Comment = ({ post, admin }) => {
                                 })}
                             </span>
                         </p>
-                        {admin.username === comment.author.username && (
+                        {user.username === comment.author.username && (
                             <div>
                                 <button
                                     onClick={() => toggleActive(comment.id)}

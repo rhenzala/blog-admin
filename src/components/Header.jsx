@@ -2,14 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../utils/api";
 import { LogOut } from 'lucide-react';
 
-const Header = ({admin, setAdmin}) => {
+const Header = ({user, setUser}) => {
     const navigate = useNavigate();
     const handleLogout = async (e) => {
         e.preventDefault();
         try {
             await logout();
-            localStorage.removeItem("admin");  
-            setAdmin(null);  
+            localStorage.removeItem("user");  
+            setUser(null);  
             navigate("/login");  
         } catch (error) {
             console.error("Logout failed:", error);
@@ -22,7 +22,7 @@ const Header = ({admin, setAdmin}) => {
                 <span>MiniBlog</span>
             </div>
             <nav className="flex gap-2">
-                {admin ? 
+                {user ? 
                     <button 
                         className="bg-transparent text-zinc-700 dark:text-zinc-100 hover:text-rose-500 transition duration-300 rounded-md px-4 py-2 hover:cursor-pointer"
                         title="Logout"

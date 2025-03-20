@@ -4,27 +4,27 @@ import Header from './components/Header';
 import Main from './components/Main';
 
 function App() {
-  const [admin, setAdmin] = useState(() => {
-    return JSON.parse(localStorage.getItem("admin")) || null;
+  const [user, setUser] = useState(() => {
+    return JSON.parse(localStorage.getItem("user")) || null;
   });
 
   useEffect(() => {
     try {
-        const storedAdmin = localStorage.getItem("admin");
-        if (storedAdmin) {
-            setAdmin(JSON.parse(storedAdmin));
+        const storeduser = localStorage.getItem("user");
+        if (storeduser) {
+            setUser(JSON.parse(storeduser));
         }
     } catch (error) {
-        console.error("Error parsing admin from localStorage:", error);
-        setAdmin(null);
+        console.error("Error parsing user from localStorage:", error);
+        setUser(null);
     }
 }, []);
 
 
   return (
     <Router>
-      <Header admin={admin} setAdmin={setAdmin} />
-      <Main admin={admin} setAdmin={setAdmin} />
+      <Header user={user} setUser={setUser} />
+      <Main user={user} setUser={setUser} />
     </Router>
   );
 }

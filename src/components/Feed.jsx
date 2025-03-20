@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchPosts } from "../utils/api";
 import Blog from "./Blog";
 
-const Feed = ({admin}) => {
+const Feed = ({user}) => {
     const [posts, setPosts] = useState([]);
     
     useEffect(() => {
@@ -17,7 +17,7 @@ const Feed = ({admin}) => {
         <div className="container mx-auto">
         <h2 className="text-2xl">Posts</h2>
         {posts.map((post) => (
-            <Blog key={post.id} post={post} admin={admin} />
+            <Blog key={post.id} post={post} user={user} />
         ))}
         </div>
     )

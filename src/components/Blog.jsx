@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MessageSquare } from 'lucide-react';
 import Comment from "./Comment";
 
-const Blog = ({post, admin}) => {
+const Blog = ({post, user}) => {
     const [showMore, setShowMore] = useState(false);
     const handleMoreClick = () => {
         setShowMore(!showMore);
@@ -28,7 +28,7 @@ const Blog = ({post, admin}) => {
                     <MessageSquare size={16}/>
                 </button>
             </div>
-            {showMore && <Comment post={post} admin={admin} />}
+            {showMore && <Comment post={post} user={user} />}
         </div>
     )
 }

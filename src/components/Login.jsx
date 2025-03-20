@@ -2,7 +2,7 @@ import { useState } from "react";
 import { login } from "../utils/api";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = ({setAdmin}) => {
+const Login = ({setUser}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Login = ({setAdmin}) => {
             const data = await login(username, password);
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify({ username })); 
-            setAdmin({ username }); 
+            setUser({ username }); 
             navigate("/"); 
         } catch (err) {
             setError(err.message);
