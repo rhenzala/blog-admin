@@ -14,8 +14,8 @@ const Login = ({setUser}) => {
         try {
             const data = await login(username, password);
             localStorage.setItem("token", data.token);
-            localStorage.setItem("user", JSON.stringify({ username })); 
-            setUser({ username }); 
+            localStorage.setItem("user", JSON.stringify(data.user)); 
+            setUser(data.user); 
             navigate("/"); 
         } catch (err) {
             setError(err.message);
