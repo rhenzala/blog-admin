@@ -17,10 +17,7 @@ const EditPostForm = ({isOpen, setIsOpen, post}) => {
         try {
             await editPost(post.id, title, content, published);
             setSuccess("Post sent.");
-            setContent("");
-            setTitle("");
-            setPublished(false);
-            
+            onClose();
         } catch (err) {
             setError(err.message);
         }

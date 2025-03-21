@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MessageSquare, BookPlus, BookCheck, CircleX, FilePenLine } from 'lucide-react';
 import Comment from "./Comment";
-import { deletePost } from "../utils/api";
+import { deletePost, updatePostStatus } from "../utils/api";
 import EditPostForm from "./EditPostForm";
 
 const Blog = ({post, user}) => {
@@ -16,6 +16,10 @@ const Blog = ({post, user}) => {
     }
     const handleOpen = () => {
         setIsOpen(!isOpen);
+    }
+    const handlePublish = () => {
+        setIsPublished(!isPublished);
+        updatePostStatus(post.id, isPublished)
     }
     const handleDelete = async (id) => {
         setError(null);
@@ -40,7 +44,7 @@ const Blog = ({post, user}) => {
             </p>
             <h3 className="text-xl font-bold mb-1">{post.title}</h3>
             <p className="mb-8">{post.content}</p>
-            <div className="border-t border-zinc-700 pt-2 flex">
+            <div className="border-t border-zinc-700 pt-2 flex justify-between">
                 <button 
                 onClick={handleMoreClick}
                 aria-label="Show or hide comments"
@@ -58,7 +62,7 @@ const Blog = ({post, user}) => {
                     <span>Edit</span>
                 </button>
                 <button 
-                onClick={handleMoreClick}
+                onClick={handlePublish}
                 aria-label="Show or hide comments"
                 className="bg-transparent text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-md hover:bg-amber-500/20 hover:text-amber-500  hover:cursor-pointer focus:bg-amber-500/20 focus:text-amber-500  transition delay-200 ease-in flex gap-1 items-center"
                 >

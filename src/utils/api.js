@@ -89,6 +89,27 @@ export const editPost = async (id, title, content, published) => {
   }
 };
 
+export const updatePostStatus = async (id, published) => {
+  const token = localStorage.getItem("token"); 
+  try {
+    const res = await fetch(`${BASE_URL}/posts/${id}/publish`, {
+      method: "PATCH",
+      headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`, 
+      },
+      body: JSON.stringify({ published }),
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Post status not sent");
+    return data;
+  } catch (err) {
+    console.error("Error updating post status:", err);
+    throw err;
+  }
+};
+
 export const deletePost = async (id) => {
   const token = localStorage.getItem("token"); 
   try {
