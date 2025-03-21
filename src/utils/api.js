@@ -11,12 +11,9 @@ export const login = async (username, password) => {
     if (!res.ok) throw new Error("Invalid credentials");
   
     const data = await res.json();
-    
-    console.log("Login Response:", data); // Debugging line
   
-    localStorage.setItem("token", data.token); // Save token
-    localStorage.setItem("user", JSON.stringify(data.user)); // Store full user data
-  
+    localStorage.setItem("token", data.token); 
+    localStorage.setItem("user", JSON.stringify(data.user)); 
     return data;
   };
   
@@ -32,20 +29,35 @@ export const register = async (username, email, password) => {
 };
 
 export const fetchPosts = async () => {
-    const token = localStorage.getItem("token"); 
-    console.log("Token,", token)
-    const res = await fetch(`${BASE_URL}/posts`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`, 
-      },
-      credentials: "include",
-    });
-  
-    if (!res.ok) throw new Error("Failed to fetch posts");
-    return await res.json();
-  };
+  const token = localStorage.getItem("token"); 
+  const res = await fetch(`${BASE_URL}/posts`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`, 
+    },
+    credentials: "include",
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch posts");
+  return await res.json();
+};
+
+export const fetchPostById = async (postId) => {
+  const token = localStorage.getItem("token"); 
+  const res = await fetch(`${BASE_URL}/posts/${postId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`, 
+    },
+    credentials: "include",
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch post");
+  return await res.json();
+};
+
 
 export const createPost = async (title, content, published) => {
   const token = localStorage.getItem("token"); 

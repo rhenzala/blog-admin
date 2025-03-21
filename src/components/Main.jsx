@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./Login";
 import Feed from "./Feed";
 import Register from "./Register";
+import Blog from "./Blog";
 
 const Main = ({ user, setUser }) => {
     return (
@@ -11,6 +12,7 @@ const Main = ({ user, setUser }) => {
                     <Route path="/" element={user ? <Feed user={user} /> : <Navigate to="/login" />} />
                     <Route path="/login" element={<Login setUser={setUser} />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/:id" element={<Blog user={user} />} />
                 </Routes>
             </div>
         </main>

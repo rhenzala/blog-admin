@@ -36,7 +36,10 @@ const Comment = ({ post, user }) => {
     }
 
     return (
-        <div>
+        <div className="mt-8">
+            <div>
+                <h2 className="text-xl">Comments ({post.comments.length})</h2>
+            </div>
             <CommentForm post={post} />
             {comments.map((comment) => (
                 <div
@@ -47,7 +50,7 @@ const Comment = ({ post, user }) => {
                         <p className="flex gap-4">
                             <span className="font-medium text-sm">{comment.author.username}</span>
                             <span className="font-light text-sm">
-                                {new Date(comment.updatedAt).toLocaleDateString("en-GB", {
+                                {new Date(comment.updatedAt).toLocaleDateString("en-US", {
                                     day: "2-digit",
                                     month: "long",
                                     year: "numeric",

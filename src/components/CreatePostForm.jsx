@@ -28,7 +28,7 @@ const CreatePostForm = ({isOpen, setIsOpen}) => {
         <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
             <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
             <DialogPanel className="max-w-xl space-y-4 border bg-zinc-100 dark:bg-zinc-800 p-4">
-                <DialogTitle className="font-bold text-xl">Create a Post</DialogTitle>
+                <DialogTitle className="font-medium text-2xl">Create a Post</DialogTitle>
                 <div className=" my-4 py-4">
                     <form 
                     onSubmit={(e) => {
