@@ -12,6 +12,12 @@ const Blog = ({user}) => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [showMore, setShowMore] = useState(true);
+
+
+    const handleMoreClick = () => {
+        setShowMore(!showMore);
+    }
 
     const handleOpen = () => {
         setIsOpen(!isOpen);
@@ -55,11 +61,12 @@ const Blog = ({user}) => {
             <p className="mb-8 leading-5">{post.content}</p>
             <div className="border-t border-zinc-700 pt-2 flex justify-between">
                 <button 
+                onClick={handleMoreClick}
                 aria-label="Show or hide comments"
                 className="bg-transparent text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-md hover:bg-blue-500/20 hover:text-blue-500  hover:cursor-pointer focus:bg-blue-500/20 focus:text-blue-500  transition delay-200 ease-in flex gap-1 items-center"
                 >
                     <MessageSquare size={16}/>
-                    <span>Comments</span>
+                    <span>{post.comments.length} {post.comments.length > 1 ? "Comments" : "Comment"}</span>
                 </button>
                 <button 
                 onClick={handleOpen}
@@ -96,7 +103,7 @@ const Blog = ({user}) => {
                 </button>
             </div>
             {isOpen && <EditPostForm isOpen={isOpen} setIsOpen={setIsOpen} post={post} />}
-            <Comment post={post} user={user} />
+            {showMore && <Comment post={post} user={user} />}
         </div>
     )
 }
