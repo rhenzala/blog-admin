@@ -47,26 +47,67 @@ export const fetchPosts = async () => {
     return await res.json();
   };
 
-  export const createPost = async (title, content, published) => {
-    const token = localStorage.getItem("token"); 
-    try {
-      const res = await fetch(`${BASE_URL}/posts`, {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`, 
-        },
-        body: JSON.stringify({ title, content, published }),
-      });
-  
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Post not sent");
-      return data;
-    } catch (err) {
-      console.error("Error creating post:", err);
-      throw err;
-    }
-  };
+export const createPost = async (title, content, published) => {
+  const token = localStorage.getItem("token"); 
+  try {
+    const res = await fetch(`${BASE_URL}/posts`, {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`, 
+      },
+      body: JSON.stringify({ title, content, published }),
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Post not sent");
+    return data;
+  } catch (err) {
+    console.error("Error creating post:", err);
+    throw err;
+  }
+};
+
+export const editPost = async (id, title, content, published) => {
+  const token = localStorage.getItem("token"); 
+  try {
+    const res = await fetch(`${BASE_URL}/posts/${id}`, {
+      method: "PUT",
+      headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`, 
+      },
+      body: JSON.stringify({ title, content, published }),
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Post not sent");
+    return data;
+  } catch (err) {
+    console.error("Error editing post:", err);
+    throw err;
+  }
+};
+
+export const deletePost = async (id) => {
+  const token = localStorage.getItem("token"); 
+  try {
+    const res = await fetch(`${BASE_URL}/posts/${id}`, {
+      method: "DELETE",
+      headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`, 
+      },
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Post not deleted");
+    return data;
+  } catch (err) {
+    console.error("Error deleting post:", err);
+    throw err;
+  }
+};
   
 
 export const fetchComments = async (postId) => {
