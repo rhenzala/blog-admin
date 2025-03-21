@@ -46,6 +46,27 @@ export const fetchPosts = async () => {
     if (!res.ok) throw new Error("Failed to fetch posts");
     return await res.json();
   };
+
+  export const createPost = async (title, content, published) => {
+    const token = localStorage.getItem("token"); 
+    try {
+      const res = await fetch(`${BASE_URL}/posts`, {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`, 
+        },
+        body: JSON.stringify({ title, content, published }),
+      });
+  
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Post not sent");
+      return data;
+    } catch (err) {
+      console.error("Error creating post:", err);
+      throw err;
+    }
+  };
   
 
 export const fetchComments = async (postId) => {
