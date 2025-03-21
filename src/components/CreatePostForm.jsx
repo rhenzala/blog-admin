@@ -19,6 +19,7 @@ const CreatePostForm = ({isOpen, setIsOpen}) => {
             setContent("");
             setTitle("");
             setPublished(false);
+            
         } catch (err) {
             setError(err.message);
         }
@@ -26,12 +27,16 @@ const CreatePostForm = ({isOpen, setIsOpen}) => {
     return (
         <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
             <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-            <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-                <DialogTitle className="font-bold">Create a Post</DialogTitle>
+            <DialogPanel className="max-w-xl space-y-4 border bg-zinc-100 dark:bg-zinc-800 p-4">
+                <DialogTitle className="font-bold text-xl">Create a Post</DialogTitle>
                 <div className=" my-4 py-4">
                     <form 
-                    onSubmit={handleCreatePost}
-                    className="flex flex-col gap-4 "
+                    onSubmit={(e) => {
+                        handleCreatePost(e);
+                        setIsOpen(false);
+                        window.location.reload();
+                    }}
+                    className="flex flex-col gap-4 lg:min-w-lg"
                     >
                         <input 
                         type="text"
@@ -52,22 +57,29 @@ const CreatePostForm = ({isOpen, setIsOpen}) => {
                         className="w-full h-24 resize-none bg-zinc-300 dark:bg-zinc-700 rounded-md p-2"
                         required
                         ></textarea>
-                        <select name="published" id="published">
-                            <option value="false" onChange={(e) => setPublished(e.target.value)}>No</option>
-                            <option value="true" onChange={(e) => setPublished(e.target.value)}>Yes</option>
-                        </select>
+                        <label htmlFor="published" className="flex flex-col gap-1">
+                            <span>Publish Post?</span>
+                            <select 
+                            name="published" 
+                            id="published"
+                            className="bg-zinc-300 dark:bg-zinc-700 rounded-md p-2"
+                            >
+                                <option value="false" onChange={(e) => setPublished(e.target.value)}>No</option>
+                                <option value="true" onChange={(e) => setPublished(e.target.value)}>Yes</option>
+                            </select>
+                        </label>
+                        
                         <div className="flex gap-4">
                         <button 
-                        type="submit"
+                        type="cancel"
                         onClick={() => setIsOpen(false)}
-                        className="bg-blue-500 text-white text-sm px-2 py-1 rounded-md hover:bg-blue-600 hover:cursor-pointer transition delay-200 ease-in w-fit"
+                        className="bg-rose-500 text-white px-2 py-1 rounded-md hover:bg-rose-600 hover:cursor-pointer transition delay-200 ease-in w-fit"
                         >
                             Cancel
                         </button>
                         <button 
                         type="submit"
-                        onClick={() => setIsOpen(false)}
-                        className="bg-blue-500 text-white text-sm px-2 py-1 rounded-md hover:bg-blue-600 hover:cursor-pointer transition delay-200 ease-in w-fit"
+                        className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600 hover:cursor-pointer transition delay-200 ease-in w-fit"
                         >
                             Send
                         </button>

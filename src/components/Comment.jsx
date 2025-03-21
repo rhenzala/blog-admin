@@ -29,6 +29,7 @@ const Comment = ({ post, user }) => {
         try {
             await deleteComment(id);
             setSuccess("Comment deleted.");
+            window.location.reload();
         } catch (err) {
             setError(err.message);
         }  

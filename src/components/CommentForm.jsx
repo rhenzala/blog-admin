@@ -14,6 +14,7 @@ const CommentForm = ({post}) => {
             await createComment(post.id, content);
             setSuccess("Comment sent.");
             setContent("");
+            window.location.reload();
         } catch (err) {
             setError(err.message);
         }
