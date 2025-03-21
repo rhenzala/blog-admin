@@ -28,7 +28,7 @@ const AllBlogs = ({post, user}) => {
             </p>
             <h3 
                 onClick={() => handleClick(post.id)}
-                className="text-3xl font-semibold tracking-tight mb-4 hover:text-blue-500 hover:cursor-pointer text-ellipsis"
+                className="text-3xl font-semibold tracking-tight mb-4 hover:text-blue-500 hover:cursor-pointer w-fit text-ellipsis"
             >
                 {post.title}
             </h3>
