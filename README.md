@@ -10,6 +10,7 @@ This is the admin frontend for MiniBlog where I can write, edit, delete posts an
 - React + Vite
 - Tailwind
 - Vercel
+
 **Backend**
 - Node.js
 - Express.js
