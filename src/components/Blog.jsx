@@ -25,8 +25,9 @@ const Blog = ({user}) => {
         setIsOpen(!isOpen);
     }
     const handlePublish = () => {
-        setIsPublished(!isPublished);
-        updatePostStatus(post.id, isPublished)
+        const newPublishStatus = !isPublished;
+        setIsPublished(newPublishStatus);
+        updatePostStatus(post.id, newPublishStatus)
     }
     const handleDelete = async (id) => {
         setError(null);
@@ -43,6 +44,7 @@ const Blog = ({user}) => {
         async function loadPost() {
             const data = await fetchPostById(id);
             setPost(data);
+            setIsPublished(data.published);
         }
         loadPost();
     }, [id]);

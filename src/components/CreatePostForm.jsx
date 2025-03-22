@@ -62,10 +62,12 @@ const CreatePostForm = ({isOpen, setIsOpen}) => {
                             <select 
                             name="published" 
                             id="published"
+                            value={published.toString()} 
+                            onChange={(e) => setPublished(e.target.value === "true")} 
                             className="bg-zinc-300 dark:bg-zinc-700 focus:outline-1 focus:outline-blue-500 rounded-md p-2"
                             >
-                                <option value="false" onChange={(e) => setPublished(e.target.value)}>No</option>
-                                <option value="true" onChange={(e) => setPublished(e.target.value)}>Yes</option>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
                             </select>
                         </label>
                         
