@@ -84,6 +84,7 @@ export const createPost = async (title, content, published) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ title, content, published }),
+      credentials: "include",
     });
 
     const data = await res.json();
@@ -105,6 +106,7 @@ export const editPost = async (id, title, content, published) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ title, content, published }),
+      credentials: "include",
     });
 
     const data = await res.json();
@@ -126,6 +128,7 @@ export const updatePostStatus = async (id, published) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ published }),
+      credentials: "include",
     });
 
     const data = await res.json();
@@ -146,6 +149,7 @@ export const deletePost = async (id) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      credentials: "include",
     });
 
     const data = await res.json();
@@ -173,6 +177,7 @@ export const createComment = async (postId, content) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ content }),
+      credentials: "include",
     });
 
     const data = await res.json();
@@ -194,6 +199,7 @@ export const editComment = async (id, content) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ content }),
+      credentials: "include",
     });
 
     const data = await res.json();
@@ -214,6 +220,7 @@ export const deleteComment = async (id) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      credentials: "include",
     });
 
     const data = await res.json();
