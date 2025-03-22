@@ -1,7 +1,7 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Header from './components/Header';
-import Main from './components/Main';
+import Header from "./components/Header";
+import Main from "./components/Main";
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -10,16 +10,15 @@ function App() {
 
   useEffect(() => {
     try {
-        const storeduser = localStorage.getItem("user");
-        if (storeduser) {
-            setUser(JSON.parse(storeduser));
-        }
+      const storeduser = localStorage.getItem("user");
+      if (storeduser) {
+        setUser(JSON.parse(storeduser));
+      }
     } catch (error) {
-        console.error("Error parsing user from localStorage:", error);
-        setUser(null);
+      console.error("Error parsing user from localStorage:", error);
+      setUser(null);
     }
-}, []);
-
+  }, []);
 
   return (
     <Router>
