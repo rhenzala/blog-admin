@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000/api"; // Backend URL
+const BASE_URL = "https://blog-backend-fk4s.onrender.com/api"; 
 
 export const login = async (username, password) => {
     const res = await fetch(`${BASE_URL}/auth/login`, {
@@ -17,7 +17,7 @@ export const login = async (username, password) => {
     return data;
   };
   
-
+// confirmPassword is added to res body so that backend can use it for validation
 export const register = async (username, email, password, confirmPassword) => {
 
   const res = await fetch(`${BASE_URL}/auth/register`, {
