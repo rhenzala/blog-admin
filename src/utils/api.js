@@ -8,7 +8,7 @@ export const login = async (username, password) => {
       credentials: "include",
     });
   
-    if (!res.ok) throw new Error("Invalid credentials");
+    if (!res.ok) throw new Error("Incorrect username or password");
   
     const data = await res.json();
   
@@ -18,15 +18,26 @@ export const login = async (username, password) => {
   };
   
 
-export const register = async (username, email, password) => {
+export const register = async (username, email, password, confirmPassword) => {
+
   const res = await fetch(`${BASE_URL}/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, email, password, role: "ADMIN" }),
+    body: JSON.stringify({ username, email, password, confirmPassword, role: "ADMIN" }),
   });
-  if (!res.ok) throw new Error("Registration failed");
-  return await res.json();
-};
+  const data = await res.json();
+    
+    if (!res.ok) {
+      if (data.errors) {
+        const error = new Error("Validation error");
+        error.response = { data }; 
+        throw error;
+      }
+      throw new Error(data.error || "Registration failed");
+    }
+    
+    return data;
+  };
 
 export const fetchPosts = async () => {
   const token = localStorage.getItem("token"); 

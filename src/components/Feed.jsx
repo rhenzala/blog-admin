@@ -22,7 +22,7 @@ const Feed = ({ user }) => {
                 <button
                     type="submit"
                     onClick={() => setIsOpen(true)}
-                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 hover:cursor-pointer transition delay-200 ease-in"
+                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 hover:cursor-pointer transition delay-200 ease-in focus:outline-1 dark:focus:outline-zinc-100 focus:outline-zinc-700"
                 >
                     Create a Post
                 </button>

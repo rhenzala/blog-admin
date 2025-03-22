@@ -63,14 +63,18 @@ const Comment = ({ post, user }) => {
                             {user.username === comment.author.username && (
                                 <button
                                 onClick={() => toggleActive(comment.id)}
-                                className="bg-transparent text-zinc-700 dark:text-zinc-300 text-sm px-2 py-1 rounded-md hover:bg-green-500/20 hover:text-green-500 hover:cursor-pointer focus:bg-green-500/20 focus:text-green-500 transition delay-200 ease-in"
+                                title="Edit comment"
+                                aria-label="Edit comment"
+                                className="bg-transparent text-zinc-700 dark:text-zinc-300 text-sm px-2 py-1 rounded-md hover:bg-green-500/20 hover:text-green-500 hover:cursor-pointer focus:bg-green-500/20 focus:text-green-500 transition delay-200 ease-in outline-none"
                                 >
                                     <Pencil size={14} />
                                 </button>
                             )}
                             <button
                                 onClick={() => handleDelete(comment.id)}
-                                className="bg-transparent text-zinc-700 dark:text-zinc-300 text-sm px-2 py-1 rounded-md hover:bg-rose-500/20 hover:text-rose-500 hover:cursor-pointer focus:bg-rose-500/20 focus:text-rose-500 transition delay-200 ease-in"
+                                title="Delete comment"
+                                aria-label="Delete comment"
+                                className="bg-transparent text-zinc-700 dark:text-zinc-300 text-sm px-2 py-1 rounded-md hover:bg-rose-500/20 hover:text-rose-500 hover:cursor-pointer focus:bg-rose-500/20 focus:text-rose-500 transition delay-200 ease-in outline-none"
                             >
                                 <Trash2 size={14} />
                             </button>

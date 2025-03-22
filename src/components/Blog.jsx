@@ -100,7 +100,7 @@ const Blog = ({user}) => {
                 <button 
                 onClick={handleMoreClick}
                 aria-label="Show or hide comments"
-                className="bg-transparent text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-md hover:bg-blue-500/20 hover:text-blue-500  hover:cursor-pointer focus:bg-blue-500/20 focus:text-blue-500  transition delay-200 ease-in flex gap-1 items-center"
+                className="bg-transparent text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-md hover:bg-blue-500/20 hover:text-blue-500  hover:cursor-pointer focus:bg-blue-500/20 focus:text-blue-500  transition delay-200 ease-in flex gap-1 items-center outline-none"
                 >
                     <MessageSquare size={16}/>
                     <span>{post.comments.length} {post.comments.length > 1 ? "Comments" : "Comment"}</span>
@@ -108,7 +108,7 @@ const Blog = ({user}) => {
                 <button 
                 onClick={handleOpen}
                 aria-label="Show or hide comments"
-                className="bg-transparent text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-md hover:bg-green-500/20 hover:text-green-500  hover:cursor-pointer focus:bg-green-500/20 focus:text-green-500  transition delay-200 ease-in flex gap-1 items-center"
+                className="bg-transparent text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-md hover:bg-green-500/20 hover:text-green-500  hover:cursor-pointer focus:bg-green-500/20 focus:text-green-500  transition delay-200 ease-in flex gap-1 items-center outline-none"
                 >
                     <FilePenLine size={16}/>
                     <span>Edit</span>
@@ -116,7 +116,7 @@ const Blog = ({user}) => {
                 <button 
                 onClick={handlePublish}
                 aria-label="Show or hide comments"
-                className="bg-transparent text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-md hover:bg-amber-500/20 hover:text-amber-500  hover:cursor-pointer focus:bg-amber-500/20 focus:text-amber-500  transition delay-200 ease-in flex gap-1 items-center"
+                className="bg-transparent text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-md hover:bg-amber-500/20 hover:text-amber-500  hover:cursor-pointer focus:bg-amber-500/20 focus:text-amber-500  transition delay-200 ease-in flex gap-1 items-center outline-none"
                 >
                     {isPublished ?
                     <>
@@ -133,7 +133,7 @@ const Blog = ({user}) => {
                 <button 
                 onClick={() => handleDelete(post.id)}
                 aria-label="Show or hide comments"
-                className="bg-transparent text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-md hover:bg-rose-500/20 hover:text-rose-500  hover:cursor-pointer focus:bg-rose-500/20 focus:text-rose-500  transition delay-200 ease-in flex gap-1 items-center"
+                className="bg-transparent text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-md hover:bg-rose-500/20 hover:text-rose-500  hover:cursor-pointer focus:bg-rose-500/20 focus:text-rose-500  transition delay-200 ease-in flex gap-1 items-center outline-none"
                 >
                     <CircleX size={16}/>
                     <span>Remove</span>

@@ -45,7 +45,7 @@ const CreatePostForm = ({isOpen, setIsOpen}) => {
                         placeholder="Title"
                         value={title} 
                         onChange={(e) => setTitle(e.target.value)}
-                        className="w-full resize-none bg-zinc-300 dark:bg-zinc-700 rounded-md p-2"
+                        className="w-full resize-none bg-zinc-300 dark:bg-zinc-700 focus:outline-1 focus:outline-blue-500 rounded-md p-2"
                         required
                         />
                         <textarea 
@@ -54,7 +54,7 @@ const CreatePostForm = ({isOpen, setIsOpen}) => {
                         placeholder="Share your thoughts"
                         value={content} 
                         onChange={(e) => setContent(e.target.value)}
-                        className="w-full h-24 resize-none bg-zinc-300 dark:bg-zinc-700 rounded-md p-2"
+                        className="w-full h-24 resize-none bg-zinc-300 dark:bg-zinc-700 focus:outline-1 focus:outline-blue-500 rounded-md p-2"
                         required
                         ></textarea>
                         <label htmlFor="published" className="flex flex-col gap-1">
@@ -62,7 +62,7 @@ const CreatePostForm = ({isOpen, setIsOpen}) => {
                             <select 
                             name="published" 
                             id="published"
-                            className="bg-zinc-300 dark:bg-zinc-700 rounded-md p-2"
+                            className="bg-zinc-300 dark:bg-zinc-700 focus:outline-1 focus:outline-blue-500 rounded-md p-2"
                             >
                                 <option value="false" onChange={(e) => setPublished(e.target.value)}>No</option>
                                 <option value="true" onChange={(e) => setPublished(e.target.value)}>Yes</option>
@@ -73,13 +73,13 @@ const CreatePostForm = ({isOpen, setIsOpen}) => {
                         <button 
                         type="cancel"
                         onClick={() => setIsOpen(false)}
-                        className="bg-rose-500 text-white px-2 py-1 rounded-md hover:bg-rose-600 hover:cursor-pointer transition delay-200 ease-in w-fit"
+                        className="bg-rose-500 text-white px-2 py-1 rounded-md focus:outline-1 dark:focus:outline-zinc-100 focus:outline-zinc-700 hover:bg-rose-600 hover:cursor-pointer transition delay-200 ease-in w-fit"
                         >
                             Cancel
                         </button>
                         <button 
                         type="submit"
-                        className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600 hover:cursor-pointer transition delay-200 ease-in w-fit"
+                        className="bg-blue-500 text-white px-2 py-1 rounded-md focus:outline-1 dark:focus:outline-zinc-100 focus:outline-zinc-700 hover:bg-blue-600 hover:cursor-pointer transition delay-200 ease-in w-fit"
                         >
                             Send
                         </button>
