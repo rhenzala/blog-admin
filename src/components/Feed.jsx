@@ -15,6 +15,9 @@ const Feed = ({ user }) => {
         }
         loadPosts();
     }, []);
+
+    if (!posts)  return <p className="text-xl">Loading...</p>
+
     return (
         <div className="container mx-auto">
             <div className="flex justify-between mb-6">
@@ -29,7 +32,11 @@ const Feed = ({ user }) => {
             </div>
             {isOpen && <CreatePostForm isOpen={isOpen} setIsOpen={setIsOpen} />}
             
-            {posts.map((post) => (
+            {!posts ?
+                <p className="text-xl">
+                    Loading...
+                </p>
+             :posts.map((post) => (
                 <AllBlogs key={post.id} post={post} user={user} />
             ))}
         </div>

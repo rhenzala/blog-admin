@@ -49,7 +49,7 @@ const Blog = ({user}) => {
         loadPost();
     }, [id]);
 
-    if (!post) return <p>Loading...</p>;
+    if (!post)  return <p className="text-xl">Loading...</p>
 
     return (
         <div className="bg-zinc-200 dark:bg-zinc-800 rounded-lg p-4 my-4">
