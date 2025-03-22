@@ -52,8 +52,8 @@ const Blog = ({user}) => {
     if (!post)  return <p className="text-xl">Loading...</p>
 
     return (
-        <div className="bg-zinc-200 dark:bg-zinc-800 rounded-lg p-4 my-4">
-            <h3 className="text-3xl font-semibold tracking-tight mb-1">{post.title}</h3>
+        <div className="bg-zinc-200 dark:bg-zinc-800 rounded-xl p-4 md:p-8 lg:p-12 my-4">
+            <h3 className="text-4xl font-bold tracking-tight text-pretty mb-1">{post.title}</h3>
             <p className="flex gap-4 mb-6">
                 <span className="font-medium text-sm">{post.author.username}</span>
                 <span className="font-light text-sm">Posted on: {new Date(post.createdAt).toLocaleDateString("en-US", {
@@ -105,7 +105,7 @@ const Blog = ({user}) => {
                 className="bg-transparent text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-md hover:bg-blue-500/20 hover:text-blue-500  hover:cursor-pointer focus:bg-blue-500/20 focus:text-blue-500  transition delay-200 ease-in flex gap-1 items-center outline-none"
                 >
                     <MessageSquare size={16}/>
-                    <span>{post.comments.length} {post.comments.length > 1 ? "Comments" : "Comment"}</span>
+                    <span>{post.comments.length} <span className="hidden sm:inline">{post.comments.length > 1 ? "Comments" : "Comment"}</span></span>
                 </button>
                 <button 
                 onClick={handleOpen}
@@ -113,7 +113,7 @@ const Blog = ({user}) => {
                 className="bg-transparent text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-md hover:bg-green-500/20 hover:text-green-500  hover:cursor-pointer focus:bg-green-500/20 focus:text-green-500  transition delay-200 ease-in flex gap-1 items-center outline-none"
                 >
                     <FilePenLine size={16}/>
-                    <span>Edit</span>
+                    <span className="hidden sm:inline">Edit</span>
                 </button>
                 <button 
                 onClick={handlePublish}
@@ -123,12 +123,12 @@ const Blog = ({user}) => {
                     {isPublished ?
                     <>
                     <BookCheck size={16}/>
-                    <span>Unpublish</span>
+                    <span className="hidden sm:inline">Unpublish</span>
                     </>
                     : 
                     <>
                     <BookPlus size={16}/>
-                    <span>Publish</span>
+                    <span className="hidden sm:inline">Publish</span>
                     </>
                     }
                 </button>
@@ -138,7 +138,7 @@ const Blog = ({user}) => {
                 className="bg-transparent text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded-md hover:bg-rose-500/20 hover:text-rose-500  hover:cursor-pointer focus:bg-rose-500/20 focus:text-rose-500  transition delay-200 ease-in flex gap-1 items-center outline-none"
                 >
                     <CircleX size={16}/>
-                    <span>Remove</span>
+                    <span className="hidden sm:inline">Remove</span>
                 </button>
             </div>
             {isOpen && <EditPostForm isOpen={isOpen} setIsOpen={setIsOpen} post={post} />}
