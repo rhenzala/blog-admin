@@ -20,10 +20,12 @@ const CreatePostForm = ({ isOpen, setIsOpen }) => {
     setSuccess(null);
     try {
       await createPost(title, content, published);
-      setSuccess("Comment sent.");
+      setSuccess("Post sent.");
       setContent("");
       setTitle("");
       setPublished(false);
+      setIsOpen(false);
+      window.location.reload();
     } catch (err) {
       setError(err.message);
     }
@@ -43,8 +45,6 @@ const CreatePostForm = ({ isOpen, setIsOpen }) => {
             <form
               onSubmit={(e) => {
                 handleCreatePost(e);
-                setIsOpen(false);
-                window.location.reload();
               }}
               className="flex flex-col gap-4 lg:min-w-lg"
             >
