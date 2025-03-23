@@ -20,8 +20,9 @@ const EditPostForm = ({ isOpen, setIsOpen, post }) => {
     setSuccess(null);
     try {
       await editPost(post.id, title, content, published);
-      setSuccess("Post sent.");
-      onClose();
+      setSuccess("Post edit sent.");
+      setIsOpen(false);
+      window.location.reload();
     } catch (err) {
       setError(err.message);
     }
@@ -39,8 +40,6 @@ const EditPostForm = ({ isOpen, setIsOpen, post }) => {
             <form
               onSubmit={(e) => {
                 handleEditPost(e);
-                setIsOpen(false);
-                window.location.reload();
               }}
               className="flex flex-col gap-4 lg:min-w-lg"
             >
