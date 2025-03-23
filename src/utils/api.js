@@ -76,6 +76,11 @@ export const fetchPostById = async (postId) => {
 
 export const createPost = async (title, content, published) => {
   const token = localStorage.getItem("token");
+  
+  if (!token) {
+    throw new Error("Authentication required. Please log in again.");
+  }
+  
   try {
     const res = await fetch(`${BASE_URL}/posts`, {
       method: "POST",
@@ -87,9 +92,20 @@ export const createPost = async (title, content, published) => {
       credentials: "include",
     });
 
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || "Post not sent");
-    return data;
+    const contentType = res.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || `Post creation failed with status: ${res.status}`);
+      }
+      return data;
+    } else {
+      const text = await res.text();
+      if (!res.ok) {
+        throw new Error(`Post creation failed: ${text}`);
+      }
+      return { message: text };
+    }
   } catch (err) {
     console.error("Error creating post:", err);
     throw err;
@@ -233,7 +249,25 @@ export const deleteComment = async (id) => {
 };
 
 export const logout = async () => {
-  const res = await fetch(`${BASE_URL}/auth/logout`);
-  if (!res.ok) throw new Error("Something went wrong");
-  return await res.json();
+  const token = localStorage.getItem("token");
+  try {
+    const res = await fetch(`${BASE_URL}/auth/logout`, {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      credentials: "include",
+    });
+    
+    if (!res.ok) throw new Error("Logout failed");
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    
+    return await res.json();
+  } catch (err) {
+    console.error("Error during logout:", err);
+    throw err;
+  }
 };
